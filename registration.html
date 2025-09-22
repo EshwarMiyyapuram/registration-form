@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(238, 121, 13);
+    }
+    .form-container {
+      width: 350px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+    .gender-options {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Registration Form</h1>
+    <form id="regForm">
+      <label for="username">Name</label>
+      <input type="text" id="username" name="username" placeholder="UPPER CASE">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="EMAIL">
+
+      
+
+      <label>Gender</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="M"> Male</label>
+        <label><input type="radio" name="gender" value="F"> Female</label>
+      </div>
+
+      <label for="course">Course Selection</label>
+      <select id="course" name="course">
+        <option value="">--Select--</option>
+        <option value="FEDF">FEDF</option>
+        <option value="AIML">AIML</option>
+        <option value="DTW">DTW</option>
+        <option value="CTSD">CTSD</option>
+        <option value="DS">DS</option>
+      </select>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="At least 9 characters">
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("regForm");
+    form.addEventListener("submit", function(event){
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const email = document.getElementById("email").value.trim();
+      
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const course = document.getElementById("course").value;
+
+      if (!username || !password || !email || !phone || !gender || !course) {
+        alert("Please fill all fields!");
+        return;
+      }
+      if (password.length < 9) {
+        alert("Password must be at least 9 characters long.");
+        return;
+      }
+      if (!email.includes("@") || !email.includes(".")) {
+        alert("Not a valid email.");
+        return;
+      }
+      alert("Registration Successful!");
+      form.reset();
+    });
+  </script>
+</body>
+</html>
